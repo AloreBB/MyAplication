@@ -31,6 +31,8 @@
                 </ul>
             </div>
         </nav>
+        <br>
+        <br>
         <div class="container">
             <br>
             @yield('contenido')

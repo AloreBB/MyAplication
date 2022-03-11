@@ -16,8 +16,9 @@
                 <img style="height: 180px; width: 285px" src="{{Storage::url($Jovy->imagen) }}" class="card-img-top mx-auto d-block" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">{{$Jovy['name']}}</h5>
-                  <p class="card-text"><p>{{$Jovy->descripcion}}</p></p>
-                  <a href="#" class="btn btn-primary">Ver más...</a>
+                  {{--<p class="card-text"><p>{{$Jovy->descripcion}}</p></p>--}}
+                  {{--En el href solicita el id para ver un registro en particular--}}
+                  <a href="/cursos/{{$Jovy->id}}" class="btn btn-primary">Ver más...</a>
                 </div>
             </div>
             <br>
