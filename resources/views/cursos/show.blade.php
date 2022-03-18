@@ -12,7 +12,7 @@
         {{--En el href solicita el id para ver un registro en particular--}}
 
     </div>
-    <a href="/cursos/{{$cursito->id}}//edit" class="btn btn-primary">Editar curso</a>
+    <a href="/cursos/{{$cursito->id}}/edit" class="btn btn-primary">Editar curso</a>
 </div>
 
 @endsection
