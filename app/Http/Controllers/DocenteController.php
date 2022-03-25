@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\storeCursoRequest;
-use App\Models\curso;
 use Illuminate\Http\Request;
+use App\Models\docente;
 
-class cursoController extends Controller
+class DocenteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +17,11 @@ class cursoController extends Controller
         //Creamos un array para poder manipular informacion de la tabla cursos
         // a su vez, el array actuará como un objeto
 
-        $cursito = curso::all();
+        $docentito = docente::all();
         /*El metodo compact pide un parametro el cual sera nuestro array
         llamado cursito y va acompañando la vista que estamos llamando
         */
-        return view('cursos.index',compact('cursito'));
+        return view('docentes.index',compact('docentito'));
     }
 
     /**
@@ -32,7 +31,7 @@ class cursoController extends Controller
      */
     public function create()
     {
-        return view('cursos.create');
+        return view('docentes.create');
     }
 
     /**
@@ -41,44 +40,27 @@ class cursoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(storeCursoRequest $request)
+    public function store(Request $request)
     {
-        //con el metodo all() veo toda la informacion
-        //return $request->all();
+       //creamos una nueva instancia del modelo
+       $docentito = new docente();
+       // esto me permitira manipular la tabla cursos
+       $docentito->nombres = $request->input('nombres');
+       $docentito->apellidos = $request->input('apellidos');
+       $docentito->titulo = $request->input('titulo');
+       $docentito->cursoAsociado = $request->input('cursoAsociado');
+       // con esto ejecutamos el comando para guardar
 
-        /*
-            obvtuvumios el dato que el usuario envia
-            por el input cuyo nombre es 'name'
-        */
-        //return $request->input('nombre');
+       if ($request->hasFile('imagen')) {
+           $docentito->foto = $request->file('imagen')->store('public');
+       }
 
-
-
-        //implementamos validaciones, que se ponen en el controlador storeCursoRequest
-        /*
-        $validacionDatos = $request->validate([
-        'nombre'=>'required|max25',
-        'imagen'=>'required|image',
-        ]);
-        */
-
-        //creamos una nueva instancia del modelo
-        $cursito = new curso();
-        // esto me permitira manipular la tabla cursos
-        $cursito->name = $request->input('nombre');
-        $cursito->descripcion = $request->input('descripcion');
-        // con esto ejecutamos el comando para guardar
-
-        if ($request->hasFile('imagen')) {
-            $cursito->imagen = $request->file('imagen')->store('public');
-        }
-        $cursito->save();
-        return 'Se guardo satisfatoriamente';
-
+       $docentito->save();
+       return 'Se guardo satisfatoriamente';
     }
 
     /**
-     * Muestra un recurso especifico (un recurso en un registro)
+     * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -87,9 +69,9 @@ class cursoController extends Controller
     {
         //Creo un array con informacion de registro
         // del id que viajo en la solicitud
-        $cursito = curso::find($id);
+        $docentito = docente::find($id);
         // asocio el array al view usando compact
-        return view('cursos.show',compact('cursito'));
+        return view('docentes.show',compact('docentito'));
     }
 
     /**
@@ -100,8 +82,8 @@ class cursoController extends Controller
      */
     public function edit($id)
     {
-        $cursito = curso::find($id);
-        return view('cursos.edit',compact('cursito'));
+        $docentito = docente::find($id);
+        return view('docentes.edit',compact('docentito'));
     }
 
     /**
@@ -113,21 +95,20 @@ class cursoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cursito = curso::find($id);
+        $docentito = docente::find($id);
 
         /*
         Con fill lleno todos los campos de la tabla cursos
         con la info que viene desde el request
         excepto lo que viene en el input llamada imagen
         */
-        $cursito->fill($request->except('imagen'));
+        $docentito->fill($request->except('imagen'));
         if ($request->hasFile('imagen')) {
-            $cursito->imagen = $request->file('imagen')->store('public');
+            $docentito->foto = $request->file('imagen')->store('public');
         }
-        $cursito->save();
+        $docentito->save();
 
-        return 'Recurso actualizado';
-
+        return 'Docente actualizado';
     }
 
     /**

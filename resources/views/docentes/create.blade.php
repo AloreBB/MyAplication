@@ -6,10 +6,10 @@
 @section('contenido')
 
 
-    <h3 class="text-center">Crear Nuevo Curso</h3>
+    <h3 class="text-center">Crear Nuevo Docente</h3>
 
     {{--se utiliza el actributo enctype para subir archivos a la base de datos--}}
-    <form action="/cursos" method="POST" enctype="multipart/form-data">
+    <form action="/docentes" method="POST" enctype="multipart/form-data">
         @csrf
         @if ($errors->any())
             @foreach ($errors->all() as $alerta)
@@ -24,15 +24,23 @@
             @endforeach
         @endif
         <div class="form-group">
-            <label for="nombrecurso">Nombre del curso</label>
-            <input name="nombre" id="nombrecurso" type="text" class="form-control">
+            <label for="nombres">Nombre del docente</label>
+            <input name="nombres" id="nombres" type="text" class="form-control">
         </div>
         <div class="form-group">
-            <label for="descripcion">Descripción del curso</label>
-            <input name="descripcion" id="descripcion" type="text" class="form-control">
+            <label for="apellidos">Apellidos del docente</label>
+            <input name="apellidos" id="apellidos" type="text" class="form-control">
         </div>
         <div class="form-group">
-            <label for="descripcion">Cargar imágen</label>
+            <label for="titulo">Título</label>
+            <input name="titulo" id="titulo" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="cursoAsociado">Curso asociado</label>
+            <input name="cursoAsociado" id="cursoAsociado" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="imagen">Cargar imágen</label>
             <input name="imagen" id="imagen" type="file">
         </div>
         <button type="submit" class="btn btn-success">Crear</button>

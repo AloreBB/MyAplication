@@ -5,6 +5,7 @@ use App\Http\Controllers\miprimerController;
 use App\Http\Controllers\heladosController;
 use App\Http\Controllers\ControladorPrecios;
 use App\Http\Controllers\cursoController;
+use App\Http\Controllers\DocenteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,3 +57,4 @@ Route::get('precio/{total}', [ControladorPrecios::class,'price']);
 Route::get('iva/{articulo}/{precio}', [ControladorPrecios::class,'getIVA']);
 
 Route::resource('cursos',cursoController::class);
+Route::resource('docentes',DocenteController::class);
