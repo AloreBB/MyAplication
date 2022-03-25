@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\storeDocenteRequest;
 use App\Models\docente;
 
 class DocenteController extends Controller
@@ -40,7 +41,7 @@ class DocenteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(storeDocenteRequest $request)
     {
        //creamos una nueva instancia del modelo
        $docentito = new docente();
