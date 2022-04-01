@@ -32,8 +32,12 @@
             <input name="descripcion" id="descripcion" type="text" class="form-control">
         </div>
         <div class="form-group">
+            <label for="horas">Duración del curso</label>
+            <input name="horas" id="horas" type="number" class="form-control">
+        </div>
+        <div class="form-group">
             <label for="descripcion">Cargar imágen</label>
-            <input name="imagen" id="imagen" type="file">
+            <input name="imagen" min="1" id="imagen" type="file">
         </div>
         <button type="submit" class="btn btn-success">Crear</button>
     </form>

@@ -16,6 +16,15 @@
 
     </div>
     <a href="/docentes/{{$docentito->id}}/edit" class="btn btn-primary">Editar docente</a>
+    {{--En este caso no se escribe 'destroy en la ruta como lo hacemos en editar.
+        Creamos el formulario solo para agreagar el boton de eliminar'--}}
+    <br>
+    <br>
+    <form class="form-group" action="/docentes/{{$docentito->id}}" method="POST">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+    </form>
 </div>
 
 @endsection

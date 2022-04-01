@@ -24,7 +24,7 @@ class storeCursoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre'=>'required|max25',
+            'nombre'=>'required|max:25',
             'imagen'=>'required|image'
         ];
     }

@@ -40,8 +40,8 @@
             <input name="cursoAsociado" id="cursoAsociado" type="text" class="form-control">
         </div>
         <div class="form-group">
-            <label for="imagen">Cargar imágen</label>
-            <input name="imagen" id="imagen" type="file">
+            <label for="foto">Cargar imágen</label>
+            <input name="foto" id="foto" type="file">
         </div>
         <button type="submit" class="btn btn-success">Crear</button>
     </form>

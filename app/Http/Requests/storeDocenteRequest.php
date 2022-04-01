@@ -24,11 +24,11 @@ class storeDocenteRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombres'=>'required|max25',
-            'apellidos'=>'required|max25',
-            'titulo'=>'required|max40',
-            'cursoAsociado'=>'required|max40',
-            'imagen'=>'required|image'
+            'nombres'=>'required|max:25',
+            'apellidos'=>'required|max:25',
+            'titulo'=>'required|max:40',
+            'cursoAsociado'=>'required|max:40',
+            'foto'=>'required|image'
         ];
     }
 }

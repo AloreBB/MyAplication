@@ -52,8 +52,8 @@ class DocenteController extends Controller
        $docentito->cursoAsociado = $request->input('cursoAsociado');
        // con esto ejecutamos el comando para guardar
 
-       if ($request->hasFile('imagen')) {
-           $docentito->foto = $request->file('imagen')->store('public');
+       if ($request->hasFile('foto')) {
+           $docentito->foto = $request->file('foto')->store('public/docentes');
        }
 
        $docentito->save();
@@ -101,11 +101,11 @@ class DocenteController extends Controller
         /*
         Con fill lleno todos los campos de la tabla cursos
         con la info que viene desde el request
-        excepto lo que viene en el input llamada imagen
+        excepto lo que viene en el input llamada foto
         */
-        $docentito->fill($request->except('imagen'));
-        if ($request->hasFile('imagen')) {
-            $docentito->foto = $request->file('imagen')->store('public');
+        $docentito->fill($request->except('foto'));
+        if ($request->hasFile('foto')) {
+            $docentito->foto = $request->file('foto')->store('public/docentes');
         }
         $docentito->save();
 
@@ -120,6 +120,18 @@ class DocenteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $docentito = docente::find($id);
+
+        $urlImagenBD = $docentito->foto;
+        //return $urlImagenBD;
+        //return $docentito;
+
+        $nombreImagen = str_replace('public/','\storage\\', $urlImagenBD);
+        $rutaCompleta = public_path().$nombreImagen;
+        //return $rutaCompleta;
+        unlink($rutaCompleta);
+        $docentito->delete();
+        return 'Eliminado';
+
     }
 }
